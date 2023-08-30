@@ -30,6 +30,8 @@
         {
             this.netMapperMap1 = new NetMapper.NetMapperMap();
             this.button1 = new System.Windows.Forms.Button();
+            this.zoomInButton = new System.Windows.Forms.Button();
+            this.zoomOutButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // netMapperMap1
@@ -38,10 +40,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.netMapperMap1.BackColor = System.Drawing.SystemColors.Control;
+            this.netMapperMap1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.netMapperMap1.CenterX = 128;
+            this.netMapperMap1.CenterY = 128;
             this.netMapperMap1.Location = new System.Drawing.Point(12, 12);
+            this.netMapperMap1.MaximumSize = new System.Drawing.Size(256, 256);
+            this.netMapperMap1.MinimumSize = new System.Drawing.Size(256, 256);
             this.netMapperMap1.Name = "netMapperMap1";
-            this.netMapperMap1.Size = new System.Drawing.Size(512, 512);
+            this.netMapperMap1.Size = new System.Drawing.Size(256, 256);
             this.netMapperMap1.TabIndex = 0;
+            this.netMapperMap1.TileX = 0;
+            this.netMapperMap1.TileY = 0;
+            this.netMapperMap1.ZoomLevel = 0;
             // 
             // button1
             // 
@@ -53,12 +63,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // zoomInButton
+            // 
+            this.zoomInButton.Location = new System.Drawing.Point(293, 23);
+            this.zoomInButton.Name = "zoomInButton";
+            this.zoomInButton.Size = new System.Drawing.Size(76, 67);
+            this.zoomInButton.TabIndex = 2;
+            this.zoomInButton.Text = "+";
+            this.zoomInButton.UseVisualStyleBackColor = true;
+            this.zoomInButton.Click += new System.EventHandler(this.zoomInPressed);
+            // 
+            // zoomOutButton
+            // 
+            this.zoomOutButton.Location = new System.Drawing.Point(293, 96);
+            this.zoomOutButton.Name = "zoomOutButton";
+            this.zoomOutButton.Size = new System.Drawing.Size(76, 67);
+            this.zoomOutButton.TabIndex = 3;
+            this.zoomOutButton.Text = "-";
+            this.zoomOutButton.UseVisualStyleBackColor = true;
+            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutPressed);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1061, 675);
+            this.Controls.Add(this.zoomOutButton);
+            this.Controls.Add(this.zoomInButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.netMapperMap1);
             this.Name = "Form1";
@@ -71,5 +103,7 @@
 
         private NetMapper.NetMapperMap netMapperMap1;
         private Button button1;
+        private Button zoomInButton;
+        private Button zoomOutButton;
     }
 }

@@ -11,5 +11,15 @@ namespace NetMapper_TestApp
         {
             //netMapperMap1.DrawTile(Image.FromFile("testTile.png"), 0, 0);
         }
+
+        private void zoomInPressed(object sender, EventArgs e)
+        {
+            netMapperMap1.ZoomLevel += 1;
+        }
+
+        private void zoomOutPressed(object sender, EventArgs e)
+        {
+            netMapperMap1.ZoomLevel -= 1;
+        }
     }
 }

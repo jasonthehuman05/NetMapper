@@ -8,14 +8,14 @@ namespace NetMapper
         public int CenterY { get; set; }
         public int TileX { get; set; } = 0;
         public int TileY{ get; set; } = 0;
-        public int ZoomLevel { get; set; } = 0;
+        private int _ZoomLevel = 0;
 
         public NetMapperMap()
         {
             InitializeComponent();
             CenterX = Width / 2;
             CenterY = Width / 2;
-            LoadTile();
+            ReloadTile();
         }
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace NetMapper
         /// <summary>
         /// Downloads a tile and places it into the PictureBox
         /// </summary>
-        public void LoadTile()
+        public void ReloadTile()
         {
-            Image i = OpenStreetMapInteraction.TileFetcher.GetTile(TileX, TileY, ZoomLevel);
+            Image i = OpenStreetMapInteraction.TileFetcher.GetTile(TileX, TileY, _ZoomLevel);
             tileHolder.Image = i;
         }
 
@@ -47,21 +47,69 @@ namespace NetMapper
         private void TileClicked(object sender, EventArgs e)
         {
             MouseEventArgs mouseEvent = (MouseEventArgs)e;
-            int clickX = mouseEvent.X;
-
-            
-            PointTypes.PointLatLon p = Converters.LocalToLatLon(mouseEvent.X, mouseEvent.Y, 0, 0, ZoomLevel);
-            MessageBox.Show($"{p.Latitude.ToString()} , {p.Longitude.ToString()}");
-        }
-    
-        public void Zoom(int amount)
-        {
-            if(ZoomLevel + amount < 20 && ZoomLevel + amount > -1)
+            if (mouseEvent.Button == MouseButtons.Left) //If it is a left click, then do something
             {
-                //Possible zoom, make the change
-                ZoomLevel = ZoomLevel + amount;
-                //TODO UPDATE ON ZOOM
+                
+            }
+            else if(mouseEvent.Button == MouseButtons.Right)//If it was a right click, zoom in on the selected quadrant
+            {
+                int x = mouseEvent.X;
+                int y = mouseEvent.Y;
+
+                int ntx = TileX;
+                int nty = TileY;
+                if (x < CenterX && y < CenterY)
+                {
+                    //top left
+                    ntx = TileX * 2;
+                    nty = TileY * 2;
+                }
+                else if(x > CenterX && y < CenterY)
+                {
+                    //top right
+                    ntx = TileX * 2 + 1;
+                    nty = TileY * 2;
+                }
+                else if (x < CenterX && y > CenterY)
+                {
+                    //bottom left
+                    ntx = TileX * 2;
+                    nty = TileY * 2 + 1;
+                }
+                else if (x > CenterX && y < CenterY)
+                {
+                    //bottom right
+                    ntx = TileX * 2 + 1;
+                    nty = TileY * 2 + 1;
+                }
+                UpdateMapPosition(ntx, nty, ZoomLevel + 1);
             }
         }
+
+        /// <summary>
+        /// Update the zoom level
+        /// </summary>
+        public int ZoomLevel
+        {
+            get => _ZoomLevel;
+            set
+            {
+                if (value < 20 && value > -1)
+                {
+                    //Possible zoom, make the change
+                    _ZoomLevel = value;
+                    //TODO UPDATE ON ZOOM
+                    ReloadTile();
+                }
+            }
+        }
+
+        public void UpdateMapPosition(int NewX, int NewY, int NewZoom)
+        {
+            TileX = NewX;
+            TileY = NewY;
+            ZoomLevel = NewZoom;
+        }
+        
     }
 }

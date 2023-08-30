@@ -18,6 +18,11 @@ namespace NetMapper.OpenStreetMapInteraction
         /// <returns></returns>
         public static Image GetTile(int tileX, int tileY, int zoom)
         {
+            //Check our Xs and Ys are valid
+            double MaxTiles = Math.Pow(2, zoom);
+            while(tileX >= MaxTiles) { tileX = (int)Math.Floor((double)(tileX / 2)); }
+            while(tileY >= MaxTiles) { tileY = (int)Math.Floor((double)(tileY / 2)); }
+
             using (WebClient client = new WebClient())
             {
                 client.Headers["User-Agent"] = "NetMapperBase/0.1 (CSharp dotnet 6; win64;)";
