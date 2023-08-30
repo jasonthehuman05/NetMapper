@@ -39,6 +39,11 @@ namespace NetMapper
             tileHolder.Image = i;
         }
 
+        /// <summary>
+        /// Triggers when the tile is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TileClicked(object sender, EventArgs e)
         {
             MouseEventArgs mouseEvent = (MouseEventArgs)e;
@@ -47,6 +52,16 @@ namespace NetMapper
             
             PointTypes.PointLatLon p = Converters.LocalToLatLon(mouseEvent.X, mouseEvent.Y, 0, 0, ZoomLevel);
             MessageBox.Show($"{p.Latitude.ToString()} , {p.Longitude.ToString()}");
+        }
+    
+        public void Zoom(int amount)
+        {
+            if(ZoomLevel + amount < 20 && ZoomLevel + amount > -1)
+            {
+                //Possible zoom, make the change
+                ZoomLevel = ZoomLevel + amount;
+                //TODO UPDATE ON ZOOM
+            }
         }
     }
 }
