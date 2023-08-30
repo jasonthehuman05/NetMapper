@@ -37,5 +37,29 @@ namespace NetMapper
 
             return LatLon;
         }
+
+        public static PointTypes.LocalCartesian LatLonToLocal(PointTypes.PointLatLon LatLon, int TileX, int TileY, int Zoom)
+        {
+            PointTypes.LocalCartesian LocalPoint = new PointTypes.LocalCartesian();
+            float tileSize = 256;
+
+            //Lat to Y
+            float numTiles = (float)Math.Pow(2, Zoom);
+            float latitudeRadians = LatLon.Latitude * (float)(Math.PI / 180.0);
+            // Calculate normalized Y-coordinate from latitude radians
+            float normalizedY = (float)((1.0 - Math.Log(Math.Tan(latitudeRadians) + 1.0 / Math.Cos(latitudeRadians)) / Math.PI) / 2.0);
+            // Convert normalized Y-coordinate to pixel-based Y-coordinate
+            LocalPoint.LocalY = normalizedY * numTiles * tileSize;
+
+            //Lon to X
+            LocalPoint.LocalX = 0;
+            float xTileCoordinate = (float)((LatLon.Longitude + 180.0) / 360.0 * numTiles); //The tile clicked.
+            float clickedX = xTileCoordinate * tileSize; //The pixel within that tile
+
+            LocalPoint.LocalX = clickedX;
+
+
+            return LocalPoint;
+        }
     }
 }
