@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMapper-TestApp", "NetMapper-TestApp\NetMapper-TestApp.csproj", "{D1CCBAA4-B98A-4555-96EF-6BB16AE9F1BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMapper", "NetMapper\NetMapper.csproj", "{0DF38E49-F380-48FE-BE65-F4D6475E6BCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1CCBAA4-B98A-4555-96EF-6BB16AE9F1BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1CCBAA4-B98A-4555-96EF-6BB16AE9F1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1CCBAA4-B98A-4555-96EF-6BB16AE9F1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1CCBAA4-B98A-4555-96EF-6BB16AE9F1BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DF38E49-F380-48FE-BE65-F4D6475E6BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF38E49-F380-48FE-BE65-F4D6475E6BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF38E49-F380-48FE-BE65-F4D6475E6BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF38E49-F380-48FE-BE65-F4D6475E6BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE783444-DBBB-4888-9FD4-B4A769136662}
+	EndGlobalSection
+EndGlobal
