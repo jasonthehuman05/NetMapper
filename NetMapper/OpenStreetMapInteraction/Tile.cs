@@ -8,9 +8,9 @@ namespace NetMapper.OpenStreetMapInteraction
 {
     internal class Tile
     {
-        static Tile GetTile(Locators.LatLonPoint)
+        static Tile GetTile(/*Locators.LatLonPoint*/)
         {
-
+            return null;
         }
     }
 }

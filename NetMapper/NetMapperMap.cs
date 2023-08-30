@@ -14,8 +14,9 @@
 
         private void ControlResized(object sender, EventArgs e)
         {
-            centerX = Width / 2;
-            centerY = Width / 2;
+            centerX = (int)Math.Floor((double)Width/2);
+            centerY = (int)Math.Floor((double)Width / 2);
+            MessageBox.Show($"resized to {Width}x{Height}. New Midpoint is at {centerX},{centerY}");
         }
     }
 }

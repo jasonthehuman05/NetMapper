@@ -33,6 +33,9 @@
             // 
             // netMapperMap1
             // 
+            this.netMapperMap1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.netMapperMap1.BackColor = System.Drawing.SystemColors.Control;
             this.netMapperMap1.Location = new System.Drawing.Point(12, 12);
             this.netMapperMap1.Name = "netMapperMap1";
