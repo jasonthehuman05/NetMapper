@@ -21,7 +21,7 @@ namespace NetMapper.OpenStreetMapInteraction
             using (WebClient client = new WebClient())
             {
                 client.Headers["User-Agent"] = "NetMapperBase/0.1 (CSharp dotnet 6; win64;)";
-                byte[] d = client.DownloadData(new Uri($"https://tile.openstreetmap.org/0/0/0.png"));
+                byte[] d = client.DownloadData(new Uri($"https://tile.openstreetmap.org/{zoom}/{tileX}/{tileY}.png"));
 
                 using (var memoryStream = new MemoryStream(d))
                 {

@@ -16,7 +16,7 @@ namespace NetMapper
             CenterX = Width / 2;
             CenterY = Width / 2;
             ZoomLevel = 0;
-            LoadTile(0, 0, 0);
+            LoadTile();
         }
         /// <summary>
         /// Fires when the NetMapperMap control is resized
@@ -42,7 +42,8 @@ namespace NetMapper
             int clickX = mouseEvent.X;
 
             
-            Converters.GetClickLocation(mouseEvent.X, mouseEvent.Y, 0, 0, ZoomLevel);
+            PointTypes.PointLatLon p = Converters.LocalToLatLon(mouseEvent.X, mouseEvent.Y, 0, 0, ZoomLevel);
+            MessageBox.Show($"{p.Latitude.ToString()} , {p.Longitude.ToString()}");
         }
     }
 }
