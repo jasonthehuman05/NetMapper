@@ -13,9 +13,16 @@ namespace NetMapper
         {
             PointTypes.PointLatLon LatLon = new PointTypes.PointLatLon();
 
+            double tileSize = 256;
+
             //Get Latitude
-            //TODO GET LATITUDE
             LatLon.Latitude = 0;
+            float numTiles = (float)Math.Pow(2, Zoom);
+            float normalizedY = (float)(Y / tileSize) / numTiles;
+            float latitudeRadians = (float)Math.Atan(Math.Sinh(Math.PI * (1 - 2 * normalizedY)));
+            float latitude = latitudeRadians * (float)(180.0 / Math.PI); //In degrees because i am sane.
+            LatLon.Latitude = latitude;
+
 
             //Get Longitude
             LatLon.Longitude = 0;
@@ -23,18 +30,10 @@ namespace NetMapper
             float TileWidthDegrees = (float)(360 / Math.Pow(2, Zoom));
             //I am assuming west is -180
             float TileLongitude = (float)((TileX / Math.Pow(2, Zoom) * 360) - 180);
-            float TileLongitudeInternalOffset = ((float)X/256) * TileWidthDegrees;
+            float TileLongitudeInternalOffset = ((float)X/256) * TileWidthDegrees; //Get the offset within the clicked tile.
 
             float FinalLongitude = TileLongitude + TileLongitudeInternalOffset;
-
             LatLon.Longitude = FinalLongitude;
-
-
-            //Debug.WriteLine("A" + X);
-            //Debug.WriteLine("B" + TileWidthDegrees);
-            //Debug.WriteLine("C" + TileLongitude);
-            //Debug.WriteLine(TileInternalOffset);
-
 
             return LatLon;
         }

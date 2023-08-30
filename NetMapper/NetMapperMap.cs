@@ -8,7 +8,7 @@ namespace NetMapper
         public int CenterY { get; set; }
         public int TileX { get; set; } = 0;
         public int TileY{ get; set; } = 0;
-        public int ZoomLevel { get; set; } = 0;
+        public int ZoomLevel { get; set; } = 1;
 
         public NetMapperMap()
         {
