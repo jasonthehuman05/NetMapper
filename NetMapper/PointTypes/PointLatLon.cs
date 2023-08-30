@@ -8,10 +8,10 @@ namespace NetMapper.PointTypes
 {
     internal class PointLatLon
     {
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
 
-        public PointLatLon(double latitude, double longitude)
+        public PointLatLon(float latitude, float longitude)
         {
             Latitude = latitude;
             Longitude = longitude;

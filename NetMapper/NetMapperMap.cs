@@ -6,16 +6,15 @@ namespace NetMapper
     {
         public int CenterX { get; set; }
         public int CenterY { get; set; }
-        public int TileX { get; set; }
-        public int TileY{ get; set; }
-        public int ZoomLevel { get; set; }
+        public int TileX { get; set; } = 0;
+        public int TileY{ get; set; } = 0;
+        public int ZoomLevel { get; set; } = 0;
 
         public NetMapperMap()
         {
             InitializeComponent();
             CenterX = Width / 2;
             CenterY = Width / 2;
-            ZoomLevel = 0;
             LoadTile();
         }
         /// <summary>
@@ -25,8 +24,8 @@ namespace NetMapper
         /// <param name="e"></param>
         private void ControlResized(object sender, EventArgs e)
         {
-            CenterX = (int)Math.Floor((double)Width/2);
-            CenterY = (int)Math.Floor((double)Width / 2);
+            CenterX = (int)Math.Floor((float)Width/2);
+            CenterY = (int)Math.Floor((float)Width / 2);
             MessageBox.Show($"resized to {Width}x{Height}. New Midpoint is at {CenterX},{CenterY}");
         }
 
