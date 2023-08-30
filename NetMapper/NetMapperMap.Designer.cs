@@ -28,19 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.tileHolder = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.tileHolder)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tileHolder
+            // 
+            this.tileHolder.Location = new System.Drawing.Point(0, 0);
+            this.tileHolder.Name = "tileHolder";
+            this.tileHolder.Size = new System.Drawing.Size(256, 256);
+            this.tileHolder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.tileHolder.TabIndex = 0;
+            this.tileHolder.TabStop = false;
+            this.tileHolder.Click += new System.EventHandler(this.TileClicked);
             // 
             // NetMapperMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.tileHolder);
+            this.MaximumSize = new System.Drawing.Size(256, 256);
+            this.MinimumSize = new System.Drawing.Size(256, 256);
             this.Name = "NetMapperMap";
-            this.Size = new System.Drawing.Size(512, 512);
+            this.Size = new System.Drawing.Size(254, 254);
             this.Resize += new System.EventHandler(this.ControlResized);
+            ((System.ComponentModel.ISupportInitialize)(this.tileHolder)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private PictureBox tileHolder;
     }
 }
