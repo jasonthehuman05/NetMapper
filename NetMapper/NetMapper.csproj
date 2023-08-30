@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Locators\" />
+    <Folder Include="OpenStreetMapInteraction\" />
   </ItemGroup>
 
 </Project>

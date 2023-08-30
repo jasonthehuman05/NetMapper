@@ -13,4 +13,10 @@
     <ProjectReference Include="..\NetMapper\NetMapper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="testTile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
