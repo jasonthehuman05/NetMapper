@@ -6,8 +6,8 @@ namespace NetMapper
     {
         public int CenterX { get; set; }
         public int CenterY { get; set; }
-        public int TileX { get; set; } = 0;
-        public int TileY{ get; set; } = 0;
+        public int TileX = 0;
+        public int TileY = 0;
         private int _ZoomLevel = 0;
 
         public NetMapperMap()
@@ -35,7 +35,7 @@ namespace NetMapper
         /// </summary>
         public void ReloadTile()
         {
-            Image i = OpenStreetMapInteraction.TileFetcher.GetTile(TileX, TileY, _ZoomLevel);
+            Image i = OpenStreetMapInteraction.TileFetcher.GetTile(ref TileX, ref TileY, _ZoomLevel);
             tileHolder.Image = i;
         }
 
@@ -76,7 +76,7 @@ namespace NetMapper
                     ntx = TileX * 2;
                     nty = TileY * 2 + 1;
                 }
-                else if (x > CenterX && y < CenterY)
+                else if (x > CenterX && y > CenterY)
                 {
                     //bottom right
                     ntx = TileX * 2 + 1;
@@ -104,6 +104,12 @@ namespace NetMapper
             }
         }
 
+        /// <summary>
+        /// Move the map to the location (local coordinates) and zoom level provided
+        /// </summary>
+        /// <param name="NewX"></param>
+        /// <param name="NewY"></param>
+        /// <param name="NewZoom"></param>
         public void UpdateMapPosition(int NewX, int NewY, int NewZoom)
         {
             TileX = NewX;
@@ -111,5 +117,11 @@ namespace NetMapper
             ZoomLevel = NewZoom;
         }
         
+        public void DisplayValues()
+        {
+            Debug.WriteLine($"Tile X {TileX}");
+            Debug.WriteLine($"Tile Y {TileY}");
+            Debug.WriteLine($"Zoom   {ZoomLevel}");
+        }
     }
 }

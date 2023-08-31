@@ -16,7 +16,7 @@ namespace NetMapper.OpenStreetMapInteraction
         /// <param name="tileY">The X position of the tile</param>
         /// <param name="zoom">The zoom level</param>
         /// <returns></returns>
-        public static Image GetTile(int tileX, int tileY, int zoom)
+        public static Image GetTile(ref int tileX, ref int tileY, int zoom)
         {
             //Check our Xs and Ys are valid
             double MaxTiles = Math.Pow(2, zoom);
