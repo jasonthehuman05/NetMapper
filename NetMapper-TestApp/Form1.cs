@@ -21,5 +21,25 @@ namespace NetMapper_TestApp
         {
             netMapperMap1.ZoomLevel -= 1;
         }
+
+        private void panLeftPressed(object sender, EventArgs e)
+        {
+            netMapperMap1.TranslateMap(-1, 0);
+        }
+
+        private void panRightPressed(object sender, EventArgs e)
+        {
+            netMapperMap1.TranslateMap(1, 0);
+        }
+
+        private void panDownPressed(object sender, EventArgs e)
+        {
+            netMapperMap1.TranslateMap(0, 1);
+        }
+
+        private void panUpPressed(object sender, EventArgs e)
+        {
+            netMapperMap1.TranslateMap(0, -1);
+        }
     }
 }

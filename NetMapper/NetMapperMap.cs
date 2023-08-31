@@ -37,6 +37,7 @@ namespace NetMapper
         {
             Image i = OpenStreetMapInteraction.TileFetcher.GetTile(ref TileX, ref TileY, _ZoomLevel);
             tileHolder.Image = i;
+            DisplayValues();
         }
 
         /// <summary>
@@ -82,9 +83,12 @@ namespace NetMapper
                     ntx = TileX * 2 + 1;
                     nty = TileY * 2 + 1;
                 }
+                DoZoom = false;
                 UpdateMapPosition(ntx, nty, ZoomLevel + 1);
+                DoZoom = true;
             }
         }
+        bool DoZoom = true;
 
         /// <summary>
         /// Update the zoom level
@@ -96,7 +100,14 @@ namespace NetMapper
             {
                 if (value < 20 && value > -1)
                 {
-                    //Possible zoom, make the change
+                    //Possible zoom
+                    //If its a zoom in, double the tiles to stay in the correct area
+                    if (value > _ZoomLevel && DoZoom)
+                    {
+                        TileX *= 2;
+                        TileY *= 2;
+                    }
+                    //Make the change
                     _ZoomLevel = value;
                     //TODO UPDATE ON ZOOM
                     ReloadTile();
@@ -117,6 +128,34 @@ namespace NetMapper
             ZoomLevel = NewZoom;
         }
         
+        /// <summary>
+        /// Move the map in the specified way, if possible
+        /// </summary>
+        /// <param name="WarpX"></param>
+        /// <param name="WarpY"></param>
+        public void TranslateMap(int WarpX, int WarpY)
+        {
+            int MaxTiles = (int)Math.Floor(Math.Pow(2, ZoomLevel)); //Get the maximum number of tiles that are available at this zoom level
+            //Clamp it into the range (UB)
+            while (TileX + WarpX >= MaxTiles) { WarpX -= 1; }
+            while (TileX + WarpY >= MaxTiles) { WarpY -=1; }
+
+            //Clamp it into the range (LB)
+            while (TileX + WarpX < 0) { WarpX += 1; }
+            while (TileY + WarpY < 0) { WarpY += 1; }
+
+            Debug.WriteLine($"wx: {WarpX}");
+            Debug.WriteLine($"wy: {WarpY}");
+
+            TileX = TileX + WarpX;
+            TileY = TileY + WarpY;
+
+            ReloadTile();
+        }
+
+        /// <summary>
+        /// DEBUG show map parameters
+        /// </summary>
         public void DisplayValues()
         {
             Debug.WriteLine($"Tile X {TileX}");
