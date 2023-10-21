@@ -108,6 +108,12 @@ namespace NetMapper
                         TileX *= 2;
                         TileY *= 2;
                     }
+                    //If it is a zoom out, we will need to do some maths to check which tile to go to.
+                    else if (value < _ZoomLevel && DoZoom)
+                    {
+                        TileX = (int)Math.Floor((decimal)(TileX / 2));
+                        TileY = (int)Math.Floor((decimal)(TileY / 2));
+                    }
                     //Make the change
                     _ZoomLevel = value;
                     //TODO UPDATE ON ZOOM
