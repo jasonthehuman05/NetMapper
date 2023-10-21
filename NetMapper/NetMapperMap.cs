@@ -25,7 +25,7 @@ namespace NetMapper
         /// <param name="e"></param>
         private void ControlResized(object sender, EventArgs e)
         {
-            CenterX = (int)Math.Floor((float)Width/2);
+            CenterX = (int)Math.Floor((float)Width / 2);
             CenterY = (int)Math.Floor((float)Width / 2);
             MessageBox.Show($"resized to {Width}x{Height}. New Midpoint is at {CenterX},{CenterY}");
         }
@@ -47,12 +47,13 @@ namespace NetMapper
         /// <param name="e"></param>
         private void TileClicked(object sender, EventArgs e)
         {
+            MessageLabel.Text = $"{DateTime.Now} - CLICK";
             MouseEventArgs mouseEvent = (MouseEventArgs)e;
             if (mouseEvent.Button == MouseButtons.Left) //If it is a left click, then do something
             {
-                
+
             }
-            else if(mouseEvent.Button == MouseButtons.Right)//If it was a right click, zoom in on the selected quadrant
+            else if (mouseEvent.Button == MouseButtons.Right)//If it was a right click, zoom in on the selected quadrant
             {
                 int x = mouseEvent.X;
                 int y = mouseEvent.Y;
@@ -65,7 +66,7 @@ namespace NetMapper
                     ntx = TileX * 2;
                     nty = TileY * 2;
                 }
-                else if(x > CenterX && y < CenterY)
+                else if (x > CenterX && y < CenterY)
                 {
                     //top right
                     ntx = TileX * 2 + 1;
@@ -127,7 +128,7 @@ namespace NetMapper
             TileY = NewY;
             ZoomLevel = NewZoom;
         }
-        
+
         /// <summary>
         /// Move the map in the specified way, if possible
         /// </summary>
@@ -138,7 +139,7 @@ namespace NetMapper
             int MaxTiles = (int)Math.Floor(Math.Pow(2, ZoomLevel)); //Get the maximum number of tiles that are available at this zoom level
             //Clamp it into the range (UB)
             while (TileX + WarpX >= MaxTiles) { WarpX -= 1; }
-            while (TileX + WarpY >= MaxTiles) { WarpY -=1; }
+            while (TileX + WarpY >= MaxTiles) { WarpY -= 1; }
 
             //Clamp it into the range (LB)
             while (TileX + WarpX < 0) { WarpX += 1; }

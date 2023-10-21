@@ -28,38 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tileHolder = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.tileHolder)).BeginInit();
-            this.SuspendLayout();
+            tileHolder = new PictureBox();
+            MessageLabel = new Label();
+            ((System.ComponentModel.ISupportInitialize)tileHolder).BeginInit();
+            SuspendLayout();
             // 
             // tileHolder
             // 
-            this.tileHolder.Location = new System.Drawing.Point(0, 0);
-            this.tileHolder.Name = "tileHolder";
-            this.tileHolder.Size = new System.Drawing.Size(256, 256);
-            this.tileHolder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.tileHolder.TabIndex = 0;
-            this.tileHolder.TabStop = false;
-            this.tileHolder.Click += new System.EventHandler(this.TileClicked);
+            tileHolder.Location = new Point(0, 0);
+            tileHolder.Name = "tileHolder";
+            tileHolder.Size = new Size(256, 256);
+            tileHolder.SizeMode = PictureBoxSizeMode.StretchImage;
+            tileHolder.TabIndex = 0;
+            tileHolder.TabStop = false;
+            tileHolder.Click += TileClicked;
+            // 
+            // MessageLabel
+            // 
+            MessageLabel.AutoSize = true;
+            MessageLabel.Location = new Point(12, 228);
+            MessageLabel.Name = "MessageLabel";
+            MessageLabel.Size = new Size(38, 15);
+            MessageLabel.TabIndex = 1;
+            MessageLabel.Text = "label1";
             // 
             // NetMapperMap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.tileHolder);
-            this.MaximumSize = new System.Drawing.Size(256, 256);
-            this.MinimumSize = new System.Drawing.Size(256, 256);
-            this.Name = "NetMapperMap";
-            this.Size = new System.Drawing.Size(254, 254);
-            this.Resize += new System.EventHandler(this.ControlResized);
-            ((System.ComponentModel.ISupportInitialize)(this.tileHolder)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(MessageLabel);
+            Controls.Add(tileHolder);
+            MaximumSize = new Size(256, 256);
+            MinimumSize = new Size(256, 256);
+            Name = "NetMapperMap";
+            Size = new Size(254, 254);
+            Click += TileClicked;
+            Resize += ControlResized;
+            ((System.ComponentModel.ISupportInitialize)tileHolder).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private PictureBox tileHolder;
+        private Label MessageLabel;
     }
 }
